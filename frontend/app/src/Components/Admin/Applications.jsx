@@ -10,9 +10,9 @@ import {
   Trash2,
 } from "lucide-react";
 import "./Admin.css";
+import { buildApiUrl } from "../../config/api";
  
-const API_BASE =
-  "https://farrandly-interalar-talon.ngrok-free.dev/api/JobApplications";
+const API_BASE = buildApiUrl("JobApplications");
  
 const statusConfig = {
   pending: { label: "Pending", icon: Clock },

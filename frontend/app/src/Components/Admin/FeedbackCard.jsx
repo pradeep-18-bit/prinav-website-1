@@ -1,10 +1,9 @@
 import { Trash2 } from "lucide-react";
+import { buildApiUrl } from "../../config/api";
 
-const BASE_URL = "https://farrandly-interalar-talon.ngrok-free.dev";
-
-export const INTERVIEW_FEEDBACK_API = `${BASE_URL}/api/InterviewFeedback/all`;
-export const INTERVIEW_FEEDBACK_BASE_API = `${BASE_URL}/api/InterviewFeedback`;
-export const INTERVIEW_FEEDBACK_ADMIN_DECISION_API = `${BASE_URL}/api/InterviewFeedback/admin-decision`;
+export const INTERVIEW_FEEDBACK_API = buildApiUrl("InterviewFeedback/all");
+export const INTERVIEW_FEEDBACK_BASE_API = buildApiUrl("InterviewFeedback");
+export const INTERVIEW_FEEDBACK_ADMIN_DECISION_API = buildApiUrl("InterviewFeedback/admin-decision");
 
 export const getDecisionValue = (feedback) =>
   feedback.adminDecision ||

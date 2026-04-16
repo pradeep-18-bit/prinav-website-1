@@ -4,12 +4,15 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   font-family: "Segoe UI", sans-serif;
   background: #f4f8fa;
   color: #163340;
@@ -17,6 +20,7 @@ html, body {
 
 body {
   min-width: 320px;
+  line-height: 1.5;
 }
 
 :root {
@@ -32,6 +36,8 @@ body {
   --theme-shadow: 0 24px 48px rgba(16, 49, 58, 0.12);
   --shadow-soft: 0 18px 36px rgba(16, 49, 58, 0.1);
   --page-shell: min(1240px, calc(100% - 2rem));
+  --navbar-offset: clamp(4.5rem, 8vw, 5.5rem);
+  --chat-safe-space: clamp(5.5rem, 11vw, 7.5rem);
 }
 
 a {
@@ -52,4 +58,21 @@ textarea {
 
 button {
   touch-action: manipulation;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  isolation: isolate;
+}
+
+body.nav-menu-open {
+  overflow: hidden;
+}
+
+main,
+section,
+article,
+div {
+  min-width: 0;
 }

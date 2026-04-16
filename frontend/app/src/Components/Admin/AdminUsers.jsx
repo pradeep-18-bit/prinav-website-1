@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Admin.css";
+import { buildApiUrl } from "../../config/api";
 
-const ADMIN_API = "https://farrandly-interalar-talon.ngrok-free.dev/api/Admin";
+const ADMIN_API = buildApiUrl("Admin");
 const ADMIN_ENDPOINTS = {
   login: `${ADMIN_API}/login`,
   register: `${ADMIN_API}/register`,

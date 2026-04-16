@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import "./Careers.css";
+import { buildApiUrl } from "../../config/api";
 
-const BASE_URL = "https://farrandly-interalar-talon.ngrok-free.dev/api";
+const JOB_APPLICATIONS_API = buildApiUrl("JobApplications");
 
 const detailItems = [
   { key: "workLocation", label: "Location", fallback: "Flexible" },
@@ -197,7 +198,7 @@ const JobDetails = () => {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/Jobs/public/${id}`, {
+        const response = await fetch(buildApiUrl(`Jobs/public/${id}`), {
           headers: { "ngrok-skip-browser-warning": "true" },
         });
 
@@ -321,7 +322,7 @@ const JobDetails = () => {
     form.append("Resume", formData.resume);
 
     try {
-      const response = await fetch(`${BASE_URL}/JobApplications`, {
+      const response = await fetch(JOB_APPLICATIONS_API, {
         method: "POST",
         headers: {
           "ngrok-skip-browser-warning": "true",

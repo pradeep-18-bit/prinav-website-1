@@ -7,9 +7,9 @@ import {
   Globe,
 } from "lucide-react";
 import "./Admin.css";
+import { buildApiUrl } from "../../config/api";
 
-const API_BASE =
-  "https://farrandly-interalar-talon.ngrok-free.dev/api/Services";
+const API_BASE = buildApiUrl("Services");
 
 const AdminServices = () => {
   const [services, setServices] = useState([]);

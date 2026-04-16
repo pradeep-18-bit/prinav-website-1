@@ -22,7 +22,7 @@ namespace Pirnav.API.Controllers.Base
             return Unauthorized(new ApiResponse<object>(false, message));
         }
 
-        // ⭐ ADD THIS METHOD
+        
         protected int GetUserId()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

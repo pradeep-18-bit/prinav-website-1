@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { FaComments, FaPaperPlane, FaRobot, FaTimes } from "react-icons/fa";
 import "./ChatWidget.css";
+import { buildApiUrl } from "../../config/api";
 
-const CHAT_API = "/api/Chat";
+const CHAT_API = buildApiUrl("Chat");
 const SESSION_STORAGE_KEY = "pirnav-chat-session-id";
 
 const fallbackSuggestions = [

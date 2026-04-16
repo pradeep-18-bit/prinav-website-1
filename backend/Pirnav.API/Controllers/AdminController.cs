@@ -147,6 +147,7 @@ namespace Pirnav.API.Controllers
         public async Task<IActionResult> GetRecentApplications()
         {
             var applications = await _context.JobApplications
+                .Where(x => !x.IsDeleted)
                 .AsNoTracking()
                 .Include(x => x.Job)
                 .OrderByDescending(x => x.AppliedDate)

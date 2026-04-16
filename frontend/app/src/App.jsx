@@ -68,58 +68,60 @@ function AppContent() {
   const hideLayout = location.pathname.startsWith("/admin");
 
   return (
-    <>
+    <div className="app-shell">
       {!hideLayout && <Navbar />}
 
-      <Routes>
+      <main className="app-main">
+        <Routes>
 
-        {/* Public */}
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/blogs" element={<Blogs />} />
-        <Route path="/blogs/:slug" element={<BlogPost />} />
-        <Route path="/services" element={<PublicServices />} />
-        <Route path="/products" element={<Products />} />
+          {/* Public */}
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blogs/:slug" element={<BlogPost />} />
+          <Route path="/services" element={<PublicServices />} />
+          <Route path="/products" element={<Products />} />
 
-        {/* Careers */}
-        <Route path="/careers" element={<Careers />} />
-        <Route path="/careers/:id" element={<JobDetails />} />
+          {/* Careers */}
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/careers/:id" element={<JobDetails />} />
 
-        {/* Service Pages */}
-        <Route path="/services/application-development" element={<Application />} />
-        <Route path="/services/testing-automation" element={<Testing />} />
-        <Route path="/services/maintainance-support" element={<Maintainance />} />
-        <Route path="/services/web-development" element={<WebPage />} />
-        <Route path="/services/mobile-app-development" element={<MobilePage />} />
-        <Route path="/services/sap-solutions" element={<SAP />} />
-        <Route path="/services/oracle-solutions" element={<Oracle />} />
-        <Route path="/services/microsoft-solutions" element={<Microsoft />} />
-        <Route path="/services/cyber-security" element={<Cybersecurity />} />
-        <Route path="/services/ai-ml" element={<AiMl />} />
-        <Route path="/services/data-science" element={<DataScience />} />
-        <Route path="/services/professional-services" element={<ProfessionalPage />} />
+          {/* Service Pages */}
+          <Route path="/services/application-development" element={<Application />} />
+          <Route path="/services/testing-automation" element={<Testing />} />
+          <Route path="/services/maintainance-support" element={<Maintainance />} />
+          <Route path="/services/web-development" element={<WebPage />} />
+          <Route path="/services/mobile-app-development" element={<MobilePage />} />
+          <Route path="/services/sap-solutions" element={<SAP />} />
+          <Route path="/services/oracle-solutions" element={<Oracle />} />
+          <Route path="/services/microsoft-solutions" element={<Microsoft />} />
+          <Route path="/services/cyber-security" element={<Cybersecurity />} />
+          <Route path="/services/ai-ml" element={<AiMl />} />
+          <Route path="/services/data-science" element={<DataScience />} />
+          <Route path="/services/professional-services" element={<ProfessionalPage />} />
 
-        {/* Admin Login */}
-        <Route path="/admin-login" element={<AdminLogin />} />
+          {/* Admin Login */}
+          <Route path="/admin-login" element={<AdminLogin />} />
 
-        {/* Admin Panel */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<DashboardHome />} />
-          <Route path="services" element={<Navigate to="/admin" replace />} />
-          <Route path="messages" element={<ContactMessages />} />
-          <Route path="jobs" element={<AdminJobs />} />
-          <Route path="applications" element={<Applications />} />
-          <Route path="interviews" element={<Interviews />} />
-          <Route path="interview-feedback" element={<InterviewFeedback />} />
-          <Route path="/admin/users" element={<AdminUsers />} />
-        </Route>
+          {/* Admin Panel */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<DashboardHome />} />
+            <Route path="services" element={<Navigate to="/admin" replace />} />
+            <Route path="messages" element={<ContactMessages />} />
+            <Route path="jobs" element={<AdminJobs />} />
+            <Route path="applications" element={<Applications />} />
+            <Route path="interviews" element={<Interviews />} />
+            <Route path="interview-feedback" element={<InterviewFeedback />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
+          </Route>
 
-      </Routes>
+        </Routes>
+      </main>
 
       {!hideLayout && <ChatWidget />}
       {!hideLayout && <Footer />}
-    </>
+    </div>
   );
 }
 

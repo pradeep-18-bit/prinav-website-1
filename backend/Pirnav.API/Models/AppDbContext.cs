@@ -30,6 +30,17 @@ public partial class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+        modelBuilder.Entity<AdminUser>().ToTable("adminusers");
+modelBuilder.Entity<ContactMessage>().ToTable("contactmessages");
+modelBuilder.Entity<Job>().ToTable("jobs");
+modelBuilder.Entity<JobApplication>().ToTable("jobapplications");
+modelBuilder.Entity<Service>().ToTable("services");
+modelBuilder.Entity<Interview>().ToTable("interviews");
+modelBuilder.Entity<Manager>().ToTable("managers");
+modelBuilder.Entity<Lead>().ToTable("leads");
+modelBuilder.Entity<DemoRequest>().ToTable("demorequests");
+modelBuilder.Entity<InterviewFeedback>().ToTable("interviewfeedbacks");
         // =======================
         // ADMIN USERS
         // =======================

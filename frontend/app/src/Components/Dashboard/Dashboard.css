@@ -2850,3 +2850,42 @@ transform:translate(0) scale(1);
 .social-box:hover {
   background: linear-gradient(180deg, var(--pirnav-teal), var(--pirnav-teal-light));
 }
+
+/* Responsive stability overrides */
+
+.hero-content h1,
+.cta-container h2 {
+  white-space: normal;
+}
+
+.footer-grid,
+.cta-container,
+.about-container,
+.counter-shell,
+.blog-preview-shell,
+.dashboard-services-shell,
+.tech-strip-shell {
+  width: min(100%, 80rem);
+}
+
+.footer-grid,
+.cta-container,
+.about-container,
+.counter-shell {
+  padding-inline: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+.footer-bottom {
+  padding-inline: clamp(1rem, 2.5vw, 1.5rem);
+}
+
+@media (max-width: 900px) {
+  .slide {
+    min-height: auto;
+  }
+
+  .cta-container,
+  .counter-shell {
+    grid-template-columns: 1fr;
+  }
+}

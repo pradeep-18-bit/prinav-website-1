@@ -8,9 +8,9 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import "./Admin.css";
+import { buildApiUrl } from "../../config/api";
  
-const BASE_URL =
-  "https://farrandly-interalar-talon.ngrok-free.dev/api/Admin";
+const BASE_URL = buildApiUrl("Admin");
  
 const DashboardHome = () => {
   const navigate = useNavigate();

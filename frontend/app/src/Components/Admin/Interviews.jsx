@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CalendarClock, Trash2 } from "lucide-react";
+import { buildApiUrl } from "../../config/api";
  
-const BASE_URL = "https://farrandly-interalar-talon.ngrok-free.dev";
-const INTERVIEW_API = `${BASE_URL}/api/Interview`;
-const APPLICATIONS_API = `${BASE_URL}/api/JobApplications`;
-const MANAGER_API = `${BASE_URL}/api/Managers`;
+const INTERVIEW_API = buildApiUrl("Interview");
+const APPLICATIONS_API = buildApiUrl("JobApplications");
+const MANAGER_API = buildApiUrl("Managers");
  
 const initialForm = {
   candidateId: "",

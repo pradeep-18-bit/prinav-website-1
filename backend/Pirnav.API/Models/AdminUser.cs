@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pirnav.API.Models;
 
+[Table("adminusers")]
 public partial class AdminUser
 {
     public int Id { get; set; }

@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { Plus, Pencil, Trash2, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import "./Admin.css";
+import { buildApiUrl } from "../../config/api";
 
-const API_BASE =
-  "https://farrandly-interalar-talon.ngrok-free.dev/api/Jobs";
+const API_BASE = buildApiUrl("Jobs");
 
 const AdminJobs = () => {
   const navigate = useNavigate();

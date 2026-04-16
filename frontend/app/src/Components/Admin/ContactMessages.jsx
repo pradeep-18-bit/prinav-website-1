@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Search, Eye, Trash2, Clock } from "lucide-react";
 import "./Admin.css";
+import { buildApiUrl } from "../../config/api";
  
-const API_BASE =
-  "https://farrandly-interalar-talon.ngrok-free.dev/api/Contact";
+const API_BASE = buildApiUrl("Contact");
  
 const ContactMessages = () => {
   const [messages, setMessages] = useState([]);

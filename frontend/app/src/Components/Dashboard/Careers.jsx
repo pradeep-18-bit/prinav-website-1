@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Careers.css";
+import { buildApiUrl } from "../../config/api";
 
-const BASE_URL = "https://farrandly-interalar-talon.ngrok-free.dev/api";
+const JOBS_PUBLIC_API = buildApiUrl("Jobs/public");
 
 const careerHighlights = [
   {
@@ -55,7 +56,7 @@ const Careers = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/Jobs/public`, {
+        const response = await fetch(JOBS_PUBLIC_API, {
           headers: {
             "ngrok-skip-browser-warning": "true",
           },

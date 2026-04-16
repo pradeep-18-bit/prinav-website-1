@@ -5,8 +5,9 @@ import {
   validateContactForm,
 } from "../../utils/formValidation";
 import "./ContactForm.css";
+import { buildApiUrl } from "../../config/api";
 
-const CONTACT_API = "https://farrandly-interalar-talon.ngrok-free.dev/api/Contact";
+const CONTACT_API = buildApiUrl("Contact");
 
 const defaultValues = {
   name: "",

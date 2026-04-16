@@ -19,6 +19,9 @@ import {
   BrainCircuit,
   BarChart3,
   BriefcaseBusiness,
+  ChevronDown,
+  Menu,
+  X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import "./Navbar.css";
@@ -43,6 +46,8 @@ const Navbar = () => {
   const location = useLocation();
 
   const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesMenuOpen, setIsServicesMenuOpen] = useState(false);
   const isServicesRoute = location.pathname.startsWith("/services");
   const isProductsRoute = location.pathname.startsWith("/products");
 
@@ -56,15 +61,45 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setIsMenuOpen(false);
+    setIsServicesMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (typeof document === "undefined") {
+      return undefined;
+    }
+
+    document.body.classList.toggle("nav-menu-open", isMenuOpen);
+
+    return () => {
+      document.body.classList.remove("nav-menu-open");
+    };
+  }, [isMenuOpen]);
+
   return (
     <header className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
       <div className="nav-container">
-
-        <div className="nav-logo">
+        <Link to="/" className="nav-logo" aria-label="Pirnav home">
           <img src={logo} alt="Pirnav Logo" />
-        </div>
+        </Link>
 
-        <nav className="nav-links">
+        <button
+          type="button"
+          className="nav-menu-button"
+          aria-expanded={isMenuOpen}
+          aria-controls="pirnav-primary-nav"
+          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          onClick={() => setIsMenuOpen((current) => !current)}
+        >
+          {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+
+        <nav
+          id="pirnav-primary-nav"
+          className={`nav-links ${isMenuOpen ? "nav-links-open" : ""}`}
+        >
 
           <NavLink to="/" className={({ isActive }) => (isActive ? "nav-item-active" : "")}>
             <Home size={18}/> Home
@@ -74,13 +109,37 @@ const Navbar = () => {
             <Users size={18}/> Who We Are
           </NavLink>
 
-          <li className="dropdown">
-            <NavLink
-              to="/services"
-              className={isServicesRoute ? "nav-item-active" : ""}
-            >
-              <Briefcase size={20}/> What We Do
-            </NavLink>
+          <div
+            className={`dropdown ${isServicesMenuOpen ? "dropdown-open" : ""}`}
+            onMouseEnter={() => {
+              if (window.innerWidth > 760) {
+                setIsServicesMenuOpen(true);
+              }
+            }}
+            onMouseLeave={() => {
+              if (window.innerWidth > 760) {
+                setIsServicesMenuOpen(false);
+              }
+            }}
+          >
+            <div className="dropdown-trigger">
+              <NavLink
+                to="/services"
+                className={isServicesRoute ? "nav-item-active" : ""}
+              >
+                <Briefcase size={20}/> What We Do
+              </NavLink>
+
+              <button
+                type="button"
+                className={`dropdown-toggle ${isServicesMenuOpen ? "dropdown-toggle-open" : ""}`}
+                aria-expanded={isServicesMenuOpen}
+                aria-label="Toggle services menu"
+                onClick={() => setIsServicesMenuOpen((current) => !current)}
+              >
+                <ChevronDown size={16} />
+              </button>
+            </div>
 
             <ul className="dropdown-menu">
               {serviceLinks.map((service) => {
@@ -103,7 +162,7 @@ const Navbar = () => {
                 );
               })}
             </ul>
-          </li>
+          </div>
 
           <NavLink
             to="/products"
@@ -119,9 +178,7 @@ const Navbar = () => {
           <Link to="/contact" className="nav-btn">
             <Phone size={18}/> Get In Touch
           </Link>
-
         </nav>
-
       </div>
     </header>
   );

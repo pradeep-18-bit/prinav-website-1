@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Admin.css";
+import { buildApiUrl } from "../../config/api";
  
-const API_BASE =
-  "https://farrandly-interalar-talon.ngrok-free.dev/api/Admin/login";
+const API_BASE = buildApiUrl("Admin/login");
  
 const AdminLogin = () => {
   const [email, setEmail] = useState("");

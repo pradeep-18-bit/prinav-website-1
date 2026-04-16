@@ -9,10 +9,10 @@ namespace Pirnav.API.Services
         {
             using var context = serviceProvider.GetRequiredService<AppDbContext>();
 
-            // ✅ Ensure DB created (MySQL friendly)
+            // Ensure DB created (MySQL friendly)
             context.Database.EnsureCreated();
 
-            // ✅ Create default admin if not exists
+            // Create default admin
             if (!context.AdminUsers.Any(x => x.Email == "admin@pirnav.com"))
             {
                 var admin = new AdminUser
