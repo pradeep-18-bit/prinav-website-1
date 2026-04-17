@@ -1,6 +1,7 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     ));
 
 builder.Services.AddScoped<ChatService>();
+builder.Services.AddHealthChecks();
 
 // =======================
 // CORS CONFIGURATION
@@ -147,6 +149,13 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
     };
 });
 
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
+});
+
 
 
 
@@ -214,9 +223,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseHttpsRedirection();
 }
 
-app.UseHttpsRedirection();
+app.UseForwardedHeaders();
 
 app.UseCors("AllowAll");   
 
@@ -246,5 +256,6 @@ app.Use(async (context, next) =>
 });
 
 app.MapControllers();
+app.MapHealthChecks("/health");
 
 app.Run();

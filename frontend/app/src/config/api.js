@@ -1,9 +1,16 @@
-const DEFAULT_API_ORIGIN = "https://farrandly-interalar-talon.ngrok-free.dev";
+const configuredApiOrigin = import.meta.env.VITE_API_ORIGIN?.replace(/\/+$/, "");
 
-export const API_ORIGIN =
-  import.meta.env.VITE_API_ORIGIN?.replace(/\/+$/, "") || DEFAULT_API_ORIGIN;
+const resolveDefaultApiOrigin = () => {
+  if (typeof window === "undefined" || !window.location?.origin) {
+    return "";
+  }
 
-export const API_BASE_URL = `${API_ORIGIN}/api`;
+  return window.location.origin.replace(/\/+$/, "");
+};
+
+export const API_ORIGIN = configuredApiOrigin || resolveDefaultApiOrigin();
+
+export const API_BASE_URL = API_ORIGIN ? `${API_ORIGIN}/api` : "/api";
 
 export const buildApiUrl = (path = "") => {
   const normalizedPath = String(path).replace(/^\/+/, "");
